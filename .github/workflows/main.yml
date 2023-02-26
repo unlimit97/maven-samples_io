@@ -1,0 +1,83 @@
+name: "Synopsys Intelligent Security Scan"
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  endtoend:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set Env for IO # optional
+      run: |
+            echo "Runner_OS_Type=linux64" >> $GITHUB_ENV
+            echo "COV_HOME=/home/sangju/cov-analysis-linux64-2022.12.0/bin" >> $GITHUB_ENV
+       
+    - name: Cache IO Client
+      id: cache-io-client
+      uses: actions/cache@v2
+      with:
+        path: |
+              io_client-${{env.Runner_OS_Type}}/io
+              io_state.json
+        key: io_client-${{env.Runner_OS_Type}}
+
+    - name: IO Client Run End to End
+      run: |
+            if [ ! -d io_client-${{env.Runner_OS_Type}} ]; then
+              #wget -O io_client-${{env.Runner_OS_Type}}.zip "${{secrets.IO_SERVER_URL}}/api/ioiq/api/downloads/io-client?extension=zip&platform=${{env.Runner_OS_Type}}"
+              cp /tmp/io_client-${{env.Runner_OS_Type}}.zip ./
+              mkdir -p io_client-${{env.Runner_OS_Type}}
+              unzip -o -j io_client-${{env.Runner_OS_Type}}.zip -d io_client-${{env.Runner_OS_Type}}
+            fi
+            chmod +x ./*.sh
+            chmod +x io_client-${{env.Runner_OS_Type}}/io    
+            io_client-${{env.Runner_OS_Type}}/io --stage io --stage execution --stage workflow --adapters adapters.json
+      env: 
+        SYNOPSYS_IO_Workflow_Engine_Version : 2022.7.2
+        SYNOPSYS_IO_io_server_token: ${{secrets.IO_SERVER_TOKEN}}
+        SYNOPSYS_IO_project_name: IO_First_Project
+        SYNOPSYS_IO_io_server_url: ${{secrets.IO_SERVER_URL}}
+        SYNOPSYS_IO_persona_type: devsecops
+        SYNOPSYS_IO_polaris_instanceurl: https://sipse.polaris.synopsys.com
+        SYNOPSYS_IO_polaris_authtoken:  ${{secrets.POLARIS_ACCESS_TOKEN}}
+        #SYNOPSYS_IO_polaris_projectName: sig-sangju/maven
+        SYNOPSYS_IO_polaris_projectName: unlimit97/maven-samples_io
+        SYNOPSYS_IO_sigma_downloadurl: https://artifactory.internal.synopsys.com/artifactory/sigma-local/released/latest/sigma-linux_x86_64
+        #SYNOPSYS_IO_Jira_HostUrl: https://coverity-e2e-test.atlassian.net
+        SYNOPSYS_IO_Jira_HostUrl: https://lobster3-com.atlassian.net
+        #SYNOPSYS_IO_Jira_Username: sig-rnd-io-testuser@synopsys.com
+        SYNOPSYS_IO_Jira_Username: unlimit97@gmail.com
+        SYNOPSYS_IO_Jira_AuthToken: ${{secrets.JIRA_AUTH_TOKEN}}
+        SYNOPSYS_IO_Jira_IssueType: Bug
+        #SYNOPSYS_IO_Jira_Project_Key: DIS
+        SYNOPSYS_IO_Jira_Project_Key: ISP
+        #SYNOPSYS_IO_Jira_Assignee: Chakravarthy S M
+        SYNOPSYS_IO_Jira_Assignee: unlimit97@gmail.com
+        SYNOPSYS_IO_slack_channelIdentifier: ${{secrets.SLACK_ID}}
+        SYNOPSYS_IO_slack_bearerToken: ${{secrets.SLACK_TOKEN}}
+        #SYNOPSYS_IO_jira_issuesquery: project=DIS
+        SYNOPSYS_IO_jira_issuesquery: project=ISP
+        #SYNOPSYS_IO_jira_project_name: dev-io-suhas
+        SYNOPSYS_IO_jira_project_name: IO_SJLEE_PROJ
+        SYNOPSYS_IO_scm_type: github
+        SYNOPSYS_IO_scm_owner: unlimit97
+        SYNOPSYS_IO_scm_repository_name: maven-samples_io
+        SYNOPSYS_IO_scm_repository_branch_name: master
+        SYNOPSYS_IO_github_token: ${{secrets.GTH_AUTH_TOKEN}}
+        SYNOPSYS_IO_github_username: unlimit97@google.com
+        SYNOPSYS_IO_github_apiUrl: https://api.github.com/repos/
+        SYNOPSYS_IO_project_release_type: major
+        SYNOPSYS_IO_Blackduck_AuthToken: ${{secrets.BLACKDUCK_TOKEN}}
+        SYNOPSYS_IO_Blackduck_ProjectName: proj_maven_io/maven_io
+        SYNOPSYS_IO_Blackduck_InstanceUrl: https://sangjulee2.app.blackduck.com/
+        SYNOPSYS_IO_Blackduck_ProjectVersion: 1.0.0
+        SYNOPSYS_IO_Coverity_InstanceUrl: https://testing.coverity.synopsys.com
+        SYNOPSYS_IO_Coverity_Username: ${{secrets.COVERITY_USERNAME}}
+        SYNOPSYS_IO_Coverity_Password: ${{secrets.COVERITY_PASSWORD}}
+        SYNOPSYS_IO_Coverity_Stream: Stream_SJLEE_Maven_IO
+        SYNOPSYS_IO_Coverity_FilePath: coverity-results.json
+        
