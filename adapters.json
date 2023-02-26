@@ -1,0 +1,44 @@
+[
+    {
+        "Name": "Blackduck-SE",
+        "Type": "SimpleExecutable",
+        "Stage": "execution",
+        "Config": {
+            "command": [
+                "./bd.sh"
+            ],
+            "Conditions":["Prescription.Security.Activities.Sca.Enabled"],
+            "Require": [
+                "Blackduck.InstanceUrl",
+                "Blackduck.AuthToken",
+                "Blackduck.ProjectName",
+                "Blackduck.ProjectVersion"
+            ],
+            "Success": {
+                "Blackduck.ScanSuccessful": true
+            }
+        }
+    },
+    {
+        "Name": "Coverity-SE",
+        "Type": "SimpleExecutable",
+        "Stage": "execution",
+        "Config": {
+            "command": [
+                "./cov.sh"
+            ],
+            "Conditions":["Prescription.Security.Activities.Sast.Enabled"],
+            "Require": [
+                "Coverity.InstanceUrl",
+                "Coverity.Username",
+                "Coverity.Password",
+                "Coverity.Stream",
+                "Coverity.FilePath"
+               
+            ],
+            "Success": {
+                "Coverity.ScanSuccessful": true
+            }
+        }
+    }
+]
