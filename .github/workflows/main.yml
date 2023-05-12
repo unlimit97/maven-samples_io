@@ -42,8 +42,8 @@ jobs:
         SYNOPSYS_IO_project_name: IO_First_Project
         SYNOPSYS_IO_io_server_url: ${{secrets.IO_SERVER_URL}}
         SYNOPSYS_IO_persona_type: devsecops
-        SYNOPSYS_IO_polaris_instanceurl: https://sipse.polaris.synopsys.com
-        SYNOPSYS_IO_polaris_authtoken:  ${{secrets.POLARIS_ACCESS_TOKEN}}
+        #SYNOPSYS_IO_polaris_instanceurl: https://sipse.polaris.synopsys.com
+        #SYNOPSYS_IO_polaris_authtoken:  ${{secrets.POLARIS_ACCESS_TOKEN}}
         #SYNOPSYS_IO_polaris_projectName: sig-sangju/maven
         SYNOPSYS_IO_polaris_projectName: unlimit97/maven-samples_io
         SYNOPSYS_IO_sigma_downloadurl: https://artifactory.internal.synopsys.com/artifactory/sigma-local/released/latest/sigma-linux_x86_64
