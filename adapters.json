@@ -1,5 +1,22 @@
 [
     {
+        "Name": "Polaris-SE",
+        "Type": "SimpleExecutable",
+        "Stage": "execution",
+        "Config": {
+            "command": [
+                "./pol.sh"
+            ],
+            "Conditions": [
+                "Prescription.Security.Activities.Sast.Enabled"
+            ],
+            "Require": [],
+            "Success": {
+                "polaris.ScanSuccessful": true
+            }
+        }
+    },    
+    {
         "Name": "Blackduck-SE",
         "Type": "SimpleExecutable",
         "Stage": "execution",
