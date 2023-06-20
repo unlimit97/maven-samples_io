@@ -10,7 +10,11 @@
             "Conditions": [
                 "Prescription.Security.Activities.Sast.Enabled"
             ],
-            "Require": [],
+            "Require": [
+                "Polaris.InstanceUrl",
+                "Polaris.AuthToken",
+                "Polaris.ProjectName"
+            ],
             "Success": {
                 "polaris.ScanSuccessful": true
             }
