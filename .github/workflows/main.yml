@@ -46,8 +46,8 @@ jobs:
             jq  '(.adapters[] | select(.name == "Polaris Install") | .status) = "done"' io_state.json  > "$tmp" && mv "$tmp" io_state.json
             jq  '(.adapters[] | select(.name == "Polaris Execution") | .status) = "done"' io_state.json  > "$tmp" && mv "$tmp" io_state.json
 
-            #io_client-${{env.Runner_OS_Type}}/io --stage execution --state io_state.json --adapters adapters.json --log io_execution.log
-            #io_client-${{env.Runner_OS_Type}}/io --stage workflow --state io_state.json --log io_workflow.log
+            io_client-${{env.Runner_OS_Type}}/io --stage execution --state io_state.json --adapters adapters.json --log io_execution.log
+            io_client-${{env.Runner_OS_Type}}/io --stage workflow --state io_state.json --log io_workflow.log
       env: 
         SYNOPSYS_IO_Workflow_Engine_Version : 2022.7.2
         SYNOPSYS_IO_io_server_token: ${{secrets.IO_SERVER_TOKEN}}
