@@ -15,6 +15,6 @@ echo ''
 echo 'polaris_projectName'
 echo ${polaris_projectName}
 
-polaris setup
+#polaris setup
 polaris --co project.name=${polaris_projectName} analyze -w
 
