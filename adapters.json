@@ -11,6 +11,7 @@
                 "Prescription.Security.Activities.Sast.Enabled"
             ],
             "Require": [
+                "polaris.cliBinaryPath",
                 "polaris.instanceUrl",
                 "polaris.authToken",
                 "polaris.projectName"
