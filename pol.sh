@@ -20,5 +20,7 @@ echo 'polaris_cliBinaryPath'
 echo ${polaris_cliBinaryPath}
 
 #polaris setup
-polaris --co project.name=${polaris_projectName} analyze -w
+#polaris --co project.name=${polaris_projectName} analyze -w
+#${polaris_cliBinaryPath} --co project.name=${polaris_projectName} --co project.branch=${polaris_branchName} analyze -w
+${polaris_cliBinaryPath} --co project.name=${polaris_projectName} analyze -w
 
