@@ -28,8 +28,11 @@ jobs:
     - name: IO Client Run End to End
       run: |
             if [ ! -d io_client-${{env.Runner_OS_Type}} ]; then
-              wget -O io_client-${{env.Runner_OS_Type}}.zip "${{secrets.IO_SERVER_URL}}/api/ioiq/api/downloads/io-client?extension=zip&platform=${{env.Runner_OS_Type}}"
+              #wget -O io_client-${{env.Runner_OS_Type}}.zip "${{secrets.IO_SERVER_URL}}/api/ioiq/api/downloads/io-client?extension=zip&platform=${{env.Runner_OS_Type}}"
+              #cp /home/sangju/IO/io-2022.7.2/io-client/io_client-0.1.684-linux64.zip /tmp/io_client-linux64.zip
               #cp /tmp/io_client-${{env.Runner_OS_Type}}.zip ./
+              cp /home/sangju/IO/io-2022.7.2/io-client/io_client-0.1.684-linux64.zip ./
+              
               mkdir -p io_client-${{env.Runner_OS_Type}}
               unzip -o -j io_client-${{env.Runner_OS_Type}}.zip -d io_client-${{env.Runner_OS_Type}}
             fi
