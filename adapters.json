@@ -11,9 +11,9 @@
                 "Prescription.Security.Activities.Sast.Enabled"
             ],
             "Require": [
-                "Polaris.InstanceUrl",
-                "Polaris.AuthToken",
-                "Polaris.ProjectName"
+                "polaris.instanceUrl",
+                "polaris.authToken",
+                "polaris.projectName"
             ],
             "Success": {
                 "polaris.ScanSuccessful": true
