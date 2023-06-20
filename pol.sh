@@ -15,6 +15,10 @@ echo ''
 echo 'polaris_projectName'
 echo ${polaris_projectName}
 
+echo ''
+echo 'polaris_cliBinaryPath'
+echo ${polaris_cliBinaryPath}
+
 #polaris setup
 polaris --co project.name=${polaris_projectName} analyze -w
 
