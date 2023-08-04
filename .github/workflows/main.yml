@@ -89,7 +89,7 @@ jobs:
         SYNOPSYS_IO_Blackduck_AuthToken: ${{secrets.BLACKDUCK_TOKEN}}
         SYNOPSYS_IO_Blackduck_ProjectName: proj_maven_io/maven_io
         SYNOPSYS_IO_Blackduck_InstanceUrl: https://sangjulee2.app.blackduck.com/
-        SYNOPSYS_IO_Blackduck_ProjectVersion: 1.0.0
+        SYNOPSYS_IO_Blackduck_ProjectVersion: master
         SYNOPSYS_IO_Coverity_InstanceUrl: https://testing.coverity.synopsys.com
         SYNOPSYS_IO_Coverity_Username: ${{secrets.COVERITY_USERNAME}}
         SYNOPSYS_IO_Coverity_Password: ${{secrets.COVERITY_PASSWORD}}
