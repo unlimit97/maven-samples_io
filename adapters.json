@@ -14,7 +14,8 @@
                 "polaris.cliBinaryPath",
                 "polaris.instanceUrl",
                 "polaris.authToken",
-                "polaris.projectName"
+                "polaris.projectName",
+                "polaris.branchName"
             ],
             "Success": {
                 "polaris.ScanSuccessful": true
