@@ -59,6 +59,7 @@ jobs:
         SYNOPSYS_IO_polaris_cliBinaryPath: /usr/local/bin/polaris
         #SYNOPSYS_IO_polaris_projectName: sig-sangju/maven
         SYNOPSYS_IO_polaris_projectName: unlimit97/maven-samples_io
+        SYNOPSYS_IO_polaris_branchName: master
         SYNOPSYS_IO_sigma_downloadurl: https://artifactory.internal.synopsys.com/artifactory/sigma-local/released/latest/sigma-linux_x86_64
         #SYNOPSYS_IO_Jira_HostUrl: https://coverity-e2e-test.atlassian.net
         SYNOPSYS_IO_Jira_HostUrl: https://lobster3-com.atlassian.net
