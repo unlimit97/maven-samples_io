@@ -41,6 +41,9 @@ jobs:
             #io_client-${{env.Runner_OS_Type}}/io --stage io --stage execution --stage workflow --adapters adapters.json
             io_client-${{env.Runner_OS_Type}}/io --stage io --log io_io.log
             cp ./io_state.json ./io_state_ori.json
+
+            tmp=$(mktemp)
+            jq '(.data.prescription.security.activities.dast.enabled) = false' io_state.json > "$tmp" && mv "$tmp" io_state.json
             
             tmp=$(mktemp)
             jq  '(.adapters[] | select(.name == "Polaris Install") | .status) = "done"' io_state.json  > "$tmp" && mv "$tmp" io_state.json
