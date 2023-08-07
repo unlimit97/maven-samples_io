@@ -43,7 +43,7 @@ jobs:
             cp ./io_state.json ./io_state_ori.json
 
             tmp=$(mktemp)
-            jq '(.data.prescription.security.activities.dast.enabled) = false' io_state.json > "$tmp" && mv "$tmp" io_state.json
+            jq '(.data.prescription.security.activities.sast.enabled) = false' io_state.json > "$tmp" && mv "$tmp" io_state.json
             
             tmp=$(mktemp)
             jq  '(.adapters[] | select(.name == "Polaris Install") | .status) = "done"' io_state.json  > "$tmp" && mv "$tmp" io_state.json
