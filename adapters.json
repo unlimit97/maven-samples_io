@@ -7,6 +7,9 @@
             "command": [
                 "./pol.sh"
             ],
+            "Conditions": [
+                "Prescription.Security.Activities.Sast.Enabled"
+            ],
             "Require": [
                 "polaris.cliBinaryPath",
                 "polaris.instanceUrl",
